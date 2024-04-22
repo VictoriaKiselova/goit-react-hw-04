@@ -31,7 +31,9 @@ export default function App() {
         setIsLoading(true);
         const requestData = await fetchArticles(queryImage, currentPage);
         const data = requestData.results;
-        setArticles(data);
+        setArticles(prevArticles => {
+          return [...prevArticles, ...data];
+        });
         setShowBtn(
           requestData.total_pages && requestData.total_pages !== currentPage
         );
@@ -41,16 +43,11 @@ export default function App() {
         setIsLoading(false);
       }
     }
-
     getArticles();
   }, [queryImage, currentPage]);
 
   const handleLoadMore = () => {
     setCurrentPage(currentPage + 1);
-
-    setArticles(prevImage => {
-      return [...prevImage, ...articles];
-    });
   };
 
   function openModal(regular) {

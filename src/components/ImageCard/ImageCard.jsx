@@ -4,8 +4,7 @@ export default function ImageCard({
   itemImage: {
     id,
     tags: [{ title }],
-    urls: { small },
-    urls: { regular },
+    urls: { small, regular },
   },
   open,
 }) {
